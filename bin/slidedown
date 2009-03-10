@@ -1,2 +1,3 @@
 require File.join(File.dirname(__FILE__), *%w[.. lib slidedown])
 
+SlideDown.new(ARGV.dup).render

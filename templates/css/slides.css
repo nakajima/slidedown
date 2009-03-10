@@ -6,18 +6,10 @@
 body {
   font-family: Helvetica;
   font-size: 38px;
-  color: white;
-  background: #101010;
-}
-
-a {
-  padding: 4px;
   color: #111;
-  background: #eee;
-  text-decoration: none;
+  background: #fff;
 }
 
-pre, code {
   font-family: Bitstream Vera Sans Mono;
   font-size: 1em;
 }
@@ -27,16 +19,6 @@ blockquote {
   font-size: 1.4em;
   font-family: Georgia, serif;
   font-style: italic;
-}
-
-cite, cite a {
-  color: #222;
-  background: #111;
-}
-
-cite {
-  padding: 0 1em 0 0;
-  float: right;
 }
 
 ul {

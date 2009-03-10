@@ -45,6 +45,11 @@ class SlideDown
     @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/)
   end
   
+  # These get added to the dom.
+  def stylesheets
+    Dir[Dir.pwd + '/*.css'].map { |path| File.read(path) }
+  end
+  
   def extract_classes!
     @classes = []
     @raw.gsub!(/^!SLIDE\s*([a-z\s]*)$/) do |klass|

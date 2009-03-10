@@ -2,6 +2,43 @@
 
 Generate slides with Markdown
 
+## Usage
+
+Write your talk. Currently, the syntax highlight lexer defaults to Ruby.
+Adding support for specifying languages is in the TODOs.
+
+    !SLIDE
+    
+    # This is my talk
+    
+    !SLIDE
+    
+    ## I hope you enjoy it
+    
+    !SLIDE code
+    
+        def foo
+          :bar
+        end
+    
+    !SLIDE
+    
+    Google is [here](http://google.com)
+    
+    !SLIDE
+    
+    # Questions?
+
+Generate the output:
+
+    $ slidedown my-talk.md
+
+### Requirements
+
+* RDiscount
+* Nokogiri
+* pygments (for syntax highlighting)
+
 (c) Copyright 2009 Pat Nakajima
 
 Permission is hereby granted, free of charge, to any person

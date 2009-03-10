@@ -1,5 +1,7 @@
 # slidedown
 
+Generate slides with Markdown
+
 (c) Copyright 2009 Pat Nakajima
 
 Permission is hereby granted, free of charge, to any person

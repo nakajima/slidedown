@@ -4,7 +4,7 @@ require 'rdiscount'
 require 'albino'
 require 'erb'
 
-raw = File.read(Dir.pwd + ARGV.first)
+raw = File.read(File.join(Dir.pwd, ARGV.first))
 
 @classes = []
 raw.gsub!(/^!SLIDE\s*([a-z\s]*)$/) do |klass|

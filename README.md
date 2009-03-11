@@ -33,6 +33,16 @@ Generate the output:
 
     $ slidedown my-talk.md
 
+### Custom Styles
+
+To add custom styles to your slides, just create stylesheets in the same directory as your presentation's markdown file:
+
+    | - presentation-directory
+      | - slides.md
+      | - styles.css
+
+The additional styles will be added to your generated slides.
+
 ### Requirements
 
 * RDiscount

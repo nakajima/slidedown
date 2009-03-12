@@ -7,16 +7,22 @@ require 'erb'
 class SlideDown
   attr_reader :classes
   
-  def initialize(args)
-    @raw = File.read(File.join(Dir.pwd, *args))
+  def self.render(args)
+    new(File.read(File.join(Dir.pwd, *args))).render
+  end
+  
+  # Ensures that the first slide has proper !SLIDE declaration
+  def initialize(raw)
+    @raw = raw =~ /\A!SLIDE/ ? raw : "!SLIDE\n#{raw}"
     extract_classes!
   end
   
   def slides
-    @slides ||= lines \
-      .reject { |line| line.empty? } \
-      .map { |slide| RDiscount.new(slide).to_html } \
-      .map { |slide| highlight(slide) }
+    @slides ||= lines.map do |slide|
+      codes = Nokogiri::HTML(slide)
+      codes.search('pre code').each { |s| highlight(s) }
+      codes.at('body *').to_s
+    end
   end
   
   def read(path)
@@ -25,24 +31,24 @@ class SlideDown
   
   def render
     template = File.read(File.dirname(__FILE__) + '/../templates/template.erb')
-    puts ERB.new(template).result(binding)
+    ERB.new(template).result(binding)
   end
   
   private
   
-  def highlight(slide)
-    doc = Nokogiri::HTML(slide)
+  def highlight(snippet, lexer='ruby')
+    node = Nokogiri::HTML(Albino.new(snippet.text, lexer).to_s).at('div')
+    klasses = node['class'].split(/\s+/)
+    klasses << lexer
+    node['class'] = klasses.join(' ')
 
-    doc.search('pre code').each do |snippet|
-      node = Nokogiri::HTML(Albino.new(snippet.text, :ruby).to_s).at('div')
-      snippet.replace(node)
-    end
-
-    doc.at('body').children.to_s rescue doc.to_s
+    snippet.replace(node)
   end
   
   def lines
-    @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/)
+    @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/) \
+      .reject { |line| line.empty? } \
+      .map { |slide| RDiscount.new(slide).to_html }
   end
   
   # These get added to the dom.

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require File.join(File.dirname(__FILE__), *%w[.. lib slidedown])
 
-SlideDown.new(ARGV.dup).render
+puts SlideDown.render(ARGV.dup)

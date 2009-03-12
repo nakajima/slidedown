@@ -54,7 +54,7 @@ class Albino
     new(*args).colorize
   end
 
-  def initialize(target, lexer = :text, format = :html)
+  def initialize(target, lexer = :ruby, format = :html)
     @target  = File.exists?(target) ? File.read(target) : target rescue target
     @options = { :l => lexer, :f => format }
   end
@@ -73,7 +73,8 @@ class Albino
 
   def convert_options(options = {})
     @options.merge(options).inject('') do |string, (flag, value)|
-      string + " -#{flag} #{value}"
+      string + " -#{flag} #{value}" if value
+      string
     end
   end
 end

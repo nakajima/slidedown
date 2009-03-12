@@ -55,6 +55,7 @@ The additional styles will be added to your generated slides.
 * Other means of navigation besides left/right keys
 * Vertical view of all slides in a row
 * Generate PDFs (maybe via cucumber)
+* Stop making Nokogiri sad when parsing out snippets
 
 (c) Copyright 2009 Pat Nakajima
 

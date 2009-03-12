@@ -37,4 +37,12 @@
 
 !SLIDE
 
-# That's all folks.
+# Uses Ruby by default
+
+!SLIDE
+
+# Fork it and fix it :)
+
+!SLIDE
+
+# [Go back to slidedown](http://github.com/nakajima/slidedown)

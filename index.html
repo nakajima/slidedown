@@ -1,58 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>nakajima/slidedown @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #1f1f1f;
-		  font-family: "helvetica"; 
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #e0e0e0; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #e0e0e0; }
-    h3 { text-align: center; color: #e0e0e0; }
-    a { color: #e0e0e0; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
-
-<body>
-  <a href="http://github.com/nakajima/slidedown"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/nakajima/slidedown/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/nakajima/slidedown/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-      
-    <h1><a href="http://github.com/nakajima/slidedown">slidedown</a> 
-      <span class="small">by <a href="http://github.com/nakajima">nakajima</a></small></h1>
-
-    <div class="description">
-      Generate syntax-highlighted slides from Markdown
-    </div>
-
-    <p><html>
+<html>
   <head>
     <title>Slides</title>
     <style type="text/css" media="screen">
@@ -1594,7 +1540,7 @@ jQuery.fn.extend({
  */
 (function(){
 
-var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^[\]]*\]|['"][^'"]*['"]|[^[\]'"]+)+\]|\.|[^ >+~,(\[\]+)+|[>+~])(\s*,\s*)?/g,
+var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^[\]]*\]|['"][^'"]*['"]|[^[\]'"]+)+\]|\\.|[^ >+~,(\[\\]+)+|[>+~])(\s*,\s*)?/g,
 	done = 0,
 	toString = Object.prototype.toString;
 
@@ -1734,8 +1680,8 @@ Sizzle.find = function(expr, context, isXML){
 		if ( (match = Expr.match[ type ].exec( expr )) ) {
 			var left = RegExp.leftContext;
 
-			if ( left.substr( left.length - 1 ) !== "\" ) {
-				match[1] = (match[1] || "").replace(/\/g, "");
+			if ( left.substr( left.length - 1 ) !== "\\" ) {
+				match[1] = (match[1] || "").replace(/\\/g, "");
 				set = Expr.find[ type ]( match, context, isXML );
 				if ( set != null ) {
 					expr = expr.replace( Expr.match[ type ], "" );
@@ -1830,14 +1776,14 @@ Sizzle.filter = function(expr, set, inplace, not){
 var Expr = Sizzle.selectors = {
 	order: [ "ID", "NAME", "TAG" ],
 	match: {
-		ID: /#((?:[\w\u00c0-\uFFFF_-]|\.)+)/,
-		CLASS: /\.((?:[\w\u00c0-\uFFFF_-]|\.)+)/,
-		NAME: /\[name=['"]*((?:[\w\u00c0-\uFFFF_-]|\.)+)['"]*\]/,
-		ATTR: /\[\s*((?:[\w\u00c0-\uFFFF_-]|\.)+)\s*(?:(\S?=)\s*(['"]*)(.*?)|)\s*\]/,
-		TAG: /^((?:[\w\u00c0-\uFFFF\*_-]|\.)+)/,
+		ID: /#((?:[\w\u00c0-\uFFFF_-]|\\.)+)/,
+		CLASS: /\.((?:[\w\u00c0-\uFFFF_-]|\\.)+)/,
+		NAME: /\[name=['"]*((?:[\w\u00c0-\uFFFF_-]|\\.)+)['"]*\]/,
+		ATTR: /\[\s*((?:[\w\u00c0-\uFFFF_-]|\\.)+)\s*(?:(\S?=)\s*(['"]*)(.*?)\3|)\s*\]/,
+		TAG: /^((?:[\w\u00c0-\uFFFF\*_-]|\\.)+)/,
 		CHILD: /:(only|nth|last|first)-child(?:\((even|odd|[\dn+-]*)\))?/,
 		POS: /:(nth|eq|gt|lt|first|last|even|odd)(?:\((\d*)\))?(?=[^-]|$)/,
-		PSEUDO: /:((?:[\w\u00c0-\uFFFF_-]|\.)+)(?:\((['"]*)((?:\([^\)]+\)|[^\(\)]*)+)\))?/
+		PSEUDO: /:((?:[\w\u00c0-\uFFFF_-]|\\.)+)(?:\((['"]*)((?:\([^\)]+\)|[^\2\(\)]*)+)\2\))?/
 	},
 	attrMap: {
 		"class": "className",
@@ -1947,7 +1893,7 @@ var Expr = Sizzle.selectors = {
 	},
 	preFilter: {
 		CLASS: function(match, curLoop, inplace, result, not, isXML){
-			match = " " + match[1].replace(/\/g, "") + " ";
+			match = " " + match[1].replace(/\\/g, "") + " ";
 
 			if ( isXML ) {
 				return match;
@@ -1967,7 +1913,7 @@ var Expr = Sizzle.selectors = {
 			return false;
 		},
 		ID: function(match){
-			return match[1].replace(/\/g, "");
+			return match[1].replace(/\\/g, "");
 		},
 		TAG: function(match, curLoop){
 			for ( var i = 0; curLoop[i] === false; i++ ){}
@@ -1976,7 +1922,7 @@ var Expr = Sizzle.selectors = {
 		CHILD: function(match){
 			if ( match[1] == "nth" ) {
 				// parse equations like 'even', 'odd', '5', '2n', '3n+2', '4n-1', '-n+6'
-				var test = /(-?)(\d*)n((?:|-)?\d*)/.exec(
+				var test = /(-?)(\d*)n((?:\+|-)?\d*)/.exec(
 					match[2] == "even" && "2n" || match[2] == "odd" && "2n+1" ||
 					!/\D/.test( match[2] ) && "0n+" + match[2] || match[2]);
 
@@ -1991,7 +1937,7 @@ var Expr = Sizzle.selectors = {
 			return match;
 		},
 		ATTR: function(match, curLoop, inplace, result, not, isXML){
-			var name = match[1].replace(/\/g, "");
+			var name = match[1].replace(/\\/g, "");
 			
 			if ( !isXML && Expr.attrMap[name] ) {
 				match[1] = Expr.attrMap[name];
@@ -2719,7 +2665,7 @@ jQuery.event = {
 					// Namespaced event handlers
 					var namespaces = type.split(".");
 					type = namespaces.shift();
-					var namespace = RegExp("(^|\.)" + namespaces.slice().sort().join(".*\.") + "(\.|$)");
+					var namespace = RegExp("(^|\\.)" + namespaces.slice().sort().join(".*\\.") + "(\\.|$)");
 
 					if ( events[type] ) {
 						// remove the given handler for the given type
@@ -2852,7 +2798,7 @@ jQuery.event = {
 		// Cache this now, all = true means, any handler
 		all = !namespaces.length && !event.exclusive;
 		
-		var namespace = RegExp("(^|\.)" + namespaces.slice().sort().join(".*\.") + "(\.|$)");
+		var namespace = RegExp("(^|\\.)" + namespaces.slice().sort().join(".*\\.") + "(\\.|$)");
 
 		handlers = ( jQuery.data(this, "events") || {} )[event.type];
 
@@ -2957,7 +2903,7 @@ jQuery.event = {
 			},
 			teardown:  function( namespaces ){
 				if ( namespaces.length ) {
-					var remove = 0, name = RegExp("(^|\.)" + namespaces[0] + "(\.|$)");
+					var remove = 0, name = RegExp("(^|\\.)" + namespaces[0] + "(\\.|$)");
 					
 					jQuery.each( (jQuery.data(this, "events").live || {}), function(){
 						if ( name.test(this.type) )
@@ -3163,7 +3109,7 @@ jQuery.fn.extend({
 });
 
 function liveHandler( event ){
-	var check = RegExp("(^|\.)" + event.type + "(\.|$)"),
+	var check = RegExp("(^|\\.)" + event.type + "(\\.|$)"),
 		stop = true,
 		elems = [];
 
@@ -4929,44 +4875,23 @@ jQuery.extend( jQuery.easing,
         
           <div class="">
             <div id="slide-6" class="content">
-              <h1>That's all folks.</h1>
+              <h1>Uses Ruby by default</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-7" class="content">
+              <h1>Fork it and fix it :)</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-8" class="content">
+              <h1><a href="http://github.com/nakajima/slidedown">Go back to slidedown</a></h1>
             </div>
           </div>
         
       </div>
     </div>
   </body>
-</html>
-
-</p><h2>Dependencies</h2>
-<p>rdiscount
-nokogiri
-pygments</p>
-<h2>Install</h2>
-<p>gem install nakajima-slidedown</p>
-<h2>Authors</h2>
-<p>Pat Nakajima (patnakajima@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Pat Nakajima (patnakajima@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/nakajima/slidedown/zipball/master">zip</a> or
-      <a href="http://github.com/nakajima/slidedown/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/nakajima/slidedown</pre>
-    </p>
-      
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/nakajima/slidedown">nakajima/slidedown</a>
-    </div>
-    
-  </div>
-
-  
-</body>
 </html>

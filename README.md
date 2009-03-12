@@ -49,6 +49,13 @@ The additional styles will be added to your generated slides.
 * Nokogiri
 * pygments (for syntax highlighting)
 
+## Todo
+
+* Ability to specify which lexer to use when syntax highlighting snippets
+* Other means of navigation besides left/right keys
+* Vertical view of all slides in a row
+* Generate PDFs (maybe via cucumber)
+
 (c) Copyright 2009 Pat Nakajima
 
 Permission is hereby granted, free of charge, to any person

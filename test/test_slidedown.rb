@@ -1,16 +1,7 @@
-require 'rubygems'
-require 'nokogiri'
-require 'bacon'
-require File.join(File.dirname(__FILE__), *%w[.. lib slidedown])
+require File.join(File.dirname(__FILE__), 'helper')
 
 describe 'SlideDown' do
-  def slidedown
-    SlideDown.new(@markdown)
-  end
-  
-  def with_markdown(markdown)
-    @markdown = markdown.gsub(/^\s*\|/, '')
-  end
+  extend TestHelp
   
   it 'finds slides' do
     with_markdown <<-MD
@@ -56,12 +47,11 @@ describe 'SlideDown' do
   # this one is hard
   it 'allows custom lexer' do
     with_markdown <<-MD
-    |
-    |    // example.js
-    |
-    |    (function() { })();
-    |
+    |@@@ js
+    |  (function() { })();
+    |@@@
     MD
-    Nokogiri::HTML(slidedown.render).at('.highlight.js').should.not.be.nil
+    # slidedown.render
+    Nokogiri(slidedown.render).at('.highlight.js').should.not.be.nil
   end
 end

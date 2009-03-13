@@ -25,10 +25,10 @@
   <body>
     <div id="slides">
       <div id="track">
-        <% slides.each_with_index do |content, idx| %>
-          <div class="<%= classes.shift %>">
+        <% slides.each_with_index do |slide, idx| %>
+          <div class="<%= slide.classes.join(' ') %>">
             <div id="slide-<%= idx %>" class="content">
-              <%= content %>
+              <%= slide.html %>
             </div>
           </div>
         <% end %>

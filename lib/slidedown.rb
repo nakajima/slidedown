@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'rdiscount'
 require 'albino'
 require 'erb'
+require File.join(File.dirname(__FILE__), 'slide')
 
 class SlideDown
   attr_reader :classes
@@ -18,11 +19,7 @@ class SlideDown
   end
   
   def slides
-    @slides ||= lines.map do |slide|
-      codes = Nokogiri::HTML(slide)
-      codes.search('pre code').each { |s| highlight(s) }
-      codes.at('body *').to_s
-    end
+    @slides ||= lines.map { |text| Slide.new(text, *@classes.shift) }
   end
   
   def read(path)
@@ -36,19 +33,14 @@ class SlideDown
   
   private
   
-  def highlight(snippet, lexer='ruby')
-    node = Nokogiri::HTML(Albino.new(snippet.text, lexer).to_s).at('div')
-    klasses = node['class'].split(/\s+/)
-    klasses << lexer
-    node['class'] = klasses.join(' ')
-
-    snippet.replace(node)
-  end
-  
   def lines
     @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/) \
-      .reject { |line| line.empty? } \
-      .map { |slide| RDiscount.new(slide).to_html }
+      .reject { |line| line.empty? }
+  end
+  
+  def parse_snippets(slide)
+    slide.gsub!(/@@@\s([\w\s]+)\s*$/, %(<pre class="#{$1}"><code>))
+    slide.gsub!(/@@@\s*$/, %(</code></pre>))
   end
   
   # These get added to the dom.

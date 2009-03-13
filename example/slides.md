@@ -26,15 +26,38 @@
 
 # Syntax Highlighting
 
-!SLIDE code
+!SLIDE
 
+    @@@ ruby
     # A rack app
     proc {
       [200, { 'Location' => '/' },
         "You are being redirected to /"
       ]
     }
+    @@@
 
 !SLIDE
 
-# That's all folks.
+# Becomes...
+
+!SLIDE code
+
+@@@ ruby
+# A rack app
+proc {
+  [200, { 'Location' => '/' },
+    "You are being redirected to /"
+  ]
+}
+@@@
+
+!SLIDE code
+
+@@@ js
+function() {
+  if (1 == 2) {
+    return "This is silly."
+  }
+}
+@@@

@@ -43,6 +43,24 @@ To add custom styles to your slides, just create stylesheets in the same directo
 
 The additional styles will be added to your generated slides.
 
+## Syntax Highlighting
+
+slidedown syntax highlighting works just like Lighthouse's:
+
+    @@@ ruby
+    def foo
+      :bar
+    end
+    @@@
+
+Or for JavaScript
+
+    @@@ js
+      function foo() {
+        return 'bar';
+      }
+    @@@
+
 ### Requirements
 
 * RDiscount
@@ -51,7 +69,6 @@ The additional styles will be added to your generated slides.
 
 ## Todo
 
-* Ability to specify which lexer to use when syntax highlighting snippets
 * Other means of navigation besides left/right keys
 * Vertical view of all slides in a row
 * Generate PDFs (maybe via cucumber)

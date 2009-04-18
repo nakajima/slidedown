@@ -32,6 +32,6 @@ describe 'SlideDown' do
     |  end
     |@@@
     MD
-    Nokogiri(slide.html).at('.highlight.ruby').should.not.be.nil
+    Nokogiri(slide.html).at('.code.ruby').should.not.be.nil
   end
 end

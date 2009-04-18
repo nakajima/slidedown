@@ -3,7 +3,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), *%w[.. lib])
 require 'rubygems'
 require 'nokogiri'
 require 'bacon'
-require 'slidedown'
+require File.join(File.dirname(__FILE__), *%w[.. lib slidedown])
 
 module TestHelp
   def slide(*args)

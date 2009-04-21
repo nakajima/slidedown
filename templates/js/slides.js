@@ -72,17 +72,28 @@
       37: -1, // ARROW LEFT
       39: 1,  // ARROW RIGHT
       32: 1,  // SPACE BAR
-      13: 1   // RETURN
+      13: 1,   // RETURN
+      left: -1,
+      right: 1
     }
     
-    if (dir = DIRECTIONS[event.which]) {
+    if (dir = DIRECTIONS[event.which || event]) {
       setIndex(getIndex() + dir);
+    }
+  }
+  
+  function clickMove(e) {
+    if (e.pageX < ($(window).width() / 2)) {
+      move('left');
+    } else {
+      move('right');
     }
   }
   
   $(window).bind('resize', function() { adjustSlides(); });
   $(document).bind('keydown', move);
   $(document).bind('hash.changed', adjustSlides);
+  $(document).bind('click', clickMove);
   $(document).ready(function() {
     setIndex(getIndex() || 0);
     $(this).trigger('hash.changed');

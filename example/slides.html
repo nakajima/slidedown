@@ -4797,17 +4797,28 @@ jQuery.extend( jQuery.easing,
       37: -1, // ARROW LEFT
       39: 1,  // ARROW RIGHT
       32: 1,  // SPACE BAR
-      13: 1   // RETURN
+      13: 1,   // RETURN
+      left: -1,
+      right: 1
     }
     
-    if (dir = DIRECTIONS[event.which]) {
+    if (dir = DIRECTIONS[event.which || event]) {
       setIndex(getIndex() + dir);
+    }
+  }
+  
+  function clickMove(e) {
+    if (e.pageX < ($(window).width() / 2)) {
+      move('left');
+    } else {
+      move('right');
     }
   }
   
   $(window).bind('resize', function() { adjustSlides(); });
   $(document).bind('keydown', move);
   $(document).bind('hash.changed', adjustSlides);
+  $(document).bind('click', clickMove);
   $(document).ready(function() {
     setIndex(getIndex() || 0);
     $(this).trigger('hash.changed');
@@ -4817,6 +4828,7 @@ jQuery.extend( jQuery.easing,
   });
 })(jQuery);
     </script>
+    
   </head>
   <body>
     <div id="slides">
@@ -4842,16 +4854,16 @@ jQuery.extend( jQuery.easing,
         
           <div class="">
             <div id="slide-3" class="content">
-              <pre><div class="highlight ruby"><pre><span class="c1"># Slide title</span>
+              <pre><code># Slide title
 
-<span class="o">!</span><span class="no">SLIDE</span>
+!SLIDE
 
-<span class="c1">## A good point</span>
+## A good point
 
-<span class="o">!</span><span class="no">SLIDE</span>
+!SLIDE
 
-<span class="o">&gt;</span> <span class="no">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">coolest</span> <span class="n">thing</span> <span class="n">ever</span><span class="o">.</span>
-</pre></div></pre>
+&gt; This is the coolest thing ever.
+</code></pre>
             </div>
           </div>
         
@@ -4863,15 +4875,15 @@ jQuery.extend( jQuery.easing,
         
           <div class="">
             <div id="slide-5" class="content">
-              <pre><div class="highlight ruby"><pre><span class="err">@@@</span> <span class="n">ruby</span>
-<span class="c1"># A rack app</span>
-<span class="nb">proc</span> <span class="p">{</span>
-  <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Location'</span> <span class="o">=&gt;</span> <span class="s1">'/'</span> <span class="p">},</span>
-    <span class="s2">"You are being redirected to /"</span>
-  <span class="o">]</span>
-<span class="p">}</span>
-<span class="err">@@@</span>
-</pre></div></pre>
+              <pre><code>@@@ ruby
+# A rack app
+proc {
+  [200, { 'Location' =&gt; '/' },
+    "You are being redirected to /"
+  ]
+}
+
+</code></pre>
             </div>
           </div>
         
@@ -4883,24 +4895,31 @@ jQuery.extend( jQuery.easing,
         
           <div class=" code">
             <div id="slide-7" class="content">
-              <pre><div class="highlight ruby"><pre><span class="c1"># A rack app</span>
+              <div class="highlight ruby code highlight"><pre><span class="n">A</span> <span class="n">rack</span> <span class="n">app</span>
+
 <span class="nb">proc</span> <span class="p">{</span>
   <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Location'</span> <span class="o">=&gt;</span> <span class="s1">'/'</span> <span class="p">},</span>
-    <span class="s2">"You are being redirected to /"</span>
+
+<span class="s2">"You are being redirected to /"</span>
+
+
   <span class="o">]</span>
 <span class="p">}</span>
-</pre></div></pre>
+</pre></div>
             </div>
           </div>
         
           <div class=" code">
             <div id="slide-8" class="content">
-              <pre><div class="highlight js"><pre><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+              <div class="highlight js code highlight"><pre><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s2">"This is silly."</span>
+
+<span class="k">return</span> <span class="s2">"This is silly."</span>
+
+
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div></pre>
+</pre></div>
             </div>
           </div>
         

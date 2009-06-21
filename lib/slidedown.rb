@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'optparse'
 require 'nokogiri'
 require 'rdiscount'
 require 'makers-mark'
@@ -8,10 +9,40 @@ require File.join(File.dirname(__FILE__), 'slide')
 $SILENT = true
 
 class SlideDown
+  USAGE = "The SlideDown command line interface takes a .md (Markdown) file as its only required argument. It will convert the file to HTML in standard out. Options:
+  -t, --template [TEMPLATE] the .erb files in /templates directory. Default is -t default, which prints stylesheets and javascripts inline. The import template uses link and script tags."
+
   attr_reader :classes
 
-  def self.render(args)
-    new(File.read(File.join(Dir.pwd, *args))).render
+  def self.run!(argv = ARGV)
+    args = argv.dup
+
+    if args.empty?
+      puts USAGE
+    else
+      source = args[0]
+      if args.length == 1
+        render(source)
+      else
+        option_parser(source).parse!(args)
+      end
+    end
+  end
+
+  def self.option_parser(source)
+    OptionParser.new do |opts|
+      opts.on('-h', '--help') { puts USAGE }
+      opts.on('-t', '--template TEMPLATE') do |template|
+        render(source, template)
+      end
+    end
+  end
+
+  def self.render(source_path, template = "default")
+    if source_path
+      slideshow = new(File.read(source_path))
+      puts slideshow.render(template)
+    end
   end
 
   # Ensures that the first slide has proper !SLIDE declaration
@@ -28,8 +59,10 @@ class SlideDown
     File.read(File.dirname(__FILE__) + '/../templates/%s' % path)
   end
 
-  def render
-    template = File.read(File.dirname(__FILE__) + '/../templates/template.erb')
+  def render(name)
+    directory = File.join(File.dirname(__FILE__), "..", "templates")
+    path      = File.join(directory, "#{name}.erb")
+    template  = File.read(path)
     ERB.new(template).result(binding)
   end
 
@@ -47,11 +80,11 @@ class SlideDown
 
   # These get added to the dom.
   def stylesheets
-    Dir[Dir.pwd + '/*.css'].map { |path| File.read(path) }
+    Dir[Dir.pwd + '/*.stylesheets'].map { |path| File.read(path) }
   end
 
   def jabascripts
-    Dir[Dir.pwd + '/*.js'].map { |path| File.read(path) }
+    Dir[Dir.pwd + '/*.javascripts'].map { |path| File.read(path) }
   end
 
   def extract_classes!

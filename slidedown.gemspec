@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: slidedown
 version: !ruby/object:Gem::Version 
-  version: 0.0.7
+  version: 0.0.8
 platform: ruby
 authors: 
 - Pat Nakajima

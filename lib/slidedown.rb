@@ -56,7 +56,7 @@ class SlideDown
   end
 
   def read(path)
-    File.read(File.dirname(__FILE__) + '/../templates/%s' % path)
+    File.read(File.join(File.dirname(__FILE__), '..', "templates", path))
   end
 
   def render(name)

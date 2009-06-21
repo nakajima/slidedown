@@ -41,7 +41,7 @@ extensions: []
 extra_rdoc_files: []
 
 files: 
-- README
+- README.md
 - bin/slidedown
 - lib/slide.rb
 - lib/slidedown.rb

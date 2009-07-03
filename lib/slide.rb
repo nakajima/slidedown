@@ -2,7 +2,7 @@ class Slide
   attr_accessor :text, :classes
 
   def initialize(text, *classes)
-    @text = text
+    @text    = text
     @classes = classes
   end
 

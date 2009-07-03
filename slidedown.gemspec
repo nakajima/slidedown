@@ -1,7 +1,7 @@
 --- !ruby/object:Gem::Specification 
 name: slidedown
 version: !ruby/object:Gem::Version 
-  version: 0.0.8.1
+  version: 0.0.9
 platform: ruby
 authors: 
 - Pat Nakajima
@@ -81,7 +81,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.3
+rubygems_version: 1.3.4
 signing_key: 
 specification_version: 2
 summary: Create slides with Markdown

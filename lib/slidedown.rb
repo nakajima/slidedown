@@ -69,16 +69,9 @@ class SlideDown
   private
 
   def lines
-    @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/) \
-      .reject { |line| line.empty? }
+    @lines ||= @raw.split(/^!SLIDE\s*([a-z\s]*)$/).reject { |line| line.empty? }
   end
 
-  def parse_snippets(slide)
-    slide.gsub!(/@@@\s([\w\s]+)\s*$/, %(<pre class="#{$1}"><code>))
-    slide.gsub!(/@@@\s*$/, %(</code></pre>))
-  end
-
-  # These get added to the dom.
   def stylesheets
     Dir[Dir.pwd + '/*.stylesheets'].map { |path| File.read(path) }
   end
@@ -92,6 +85,7 @@ class SlideDown
     @raw.gsub!(/^!SLIDE\s*([a-z\s]*)$/) do |klass|
       @classes << klass.to_s.chomp.gsub('!SLIDE', '')
       "!SLIDE"
-    end ; @classes
+    end
+    @classes
   end
 end

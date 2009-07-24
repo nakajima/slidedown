@@ -2,4 +2,4 @@
 
 require File.join(File.dirname(__FILE__), *%w[.. lib slidedown])
 
-puts SlideDown.render(ARGV.dup)
+SlideDown.run!

@@ -20,7 +20,7 @@ describe 'SlideDown' do
     |# The title
     |!SLIDE
     MD
-    Nokogiri::HTML(slidedown.render).at('h1').should.not.be.nil
+    Nokogiri::HTML(slidedown.render('default')).at('h1').should.not.be.nil
   end
 
   it 'adds class names to slides' do
@@ -29,7 +29,7 @@ describe 'SlideDown' do
     |!SLIDE awesome
     |# The title
     MD
-    second_slide = Nokogiri::HTML(slidedown.render).search('#track > div')[1]
+    second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1]
     second_slide['class'].should.include('awesome')
   end
 
@@ -40,7 +40,7 @@ describe 'SlideDown' do
     |  (function() { })();
     |@@@
     MD
-    # slidedown.render
-    Nokogiri(slidedown.render).at('.highlight.js').should.not.be.nil
+    # slidedown.render('default')
+    Nokogiri(slidedown.render('default')).at('.highlight.js').should.not.be.nil
   end
 end

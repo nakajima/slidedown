@@ -28,14 +28,16 @@
 
 !SLIDE
 
-    @@@ ruby
-    # A rack app
-    proc {
-      [200, { 'Location' => '/' },
-        "You are being redirected to /"
-      ]
-    }
-    @@@
+<pre>
+  @@@ ruby
+      # A rack app
+      proc {
+        [200, { 'Location' => '/' },
+          "You are being redirected to /"
+        ]
+      }
+  @@@
+</pre>
 
 !SLIDE
 
@@ -44,20 +46,38 @@
 !SLIDE code
 
 @@@ ruby
-# A rack app
-proc {
-  [200, { 'Location' => '/' },
-    "You are being redirected to /"
-  ]
-}
+    # A rack app
+    proc {
+      [200, { 'Location' => '/' },
+        "You are being redirected to /"
+      ]
+    }
 @@@
+
+!SLIDE
+
+<pre>
+  @@@ js
+      // Some JavaScript
+      function() {
+        if (1 == 2) {
+          return "This is silly."
+        }
+      }
+  @@@
+</pre>
+
+!SLIDE
+
+# Becomes...
 
 !SLIDE code
 
 @@@ js
-function() {
-  if (1 == 2) {
-    return "This is silly."
-  }
-}
+    // Some JavaScript
+    function() {
+      if (1 == 2) {
+        return "This is silly."
+      }
+    }
 @@@

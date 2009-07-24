@@ -4875,15 +4875,16 @@ jQuery.extend( jQuery.easing,
         
           <div class="">
             <div id="slide-5" class="content">
-              <pre><code>@@@ ruby
-# A rack app
-proc {
-  [200, { 'Location' =&gt; '/' },
-    "You are being redirected to /"
-  ]
-}
-
-</code></pre>
+              <pre>
+  @@@ ruby
+      # A rack app
+      proc {
+        [200, { 'Location' =&gt; '/' },
+          "You are being redirected to /"
+        ]
+      }
+  @@@
+</pre>
             </div>
           </div>
         
@@ -4895,28 +4896,43 @@ proc {
         
           <div class=" code">
             <div id="slide-7" class="content">
-              <div class="highlight ruby code highlight"><pre><span class="n">A</span> <span class="n">rack</span> <span class="n">app</span>
-
+              <div class="highlight ruby code highlight"><pre><span class="c1"># A rack app</span>
 <span class="nb">proc</span> <span class="p">{</span>
   <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Location'</span> <span class="o">=&gt;</span> <span class="s1">'/'</span> <span class="p">},</span>
-
-<span class="s2">"You are being redirected to /"</span>
-
-
+    <span class="s2">"You are being redirected to /"</span>
   <span class="o">]</span>
 <span class="p">}</span>
 </pre></div>
             </div>
           </div>
         
-          <div class=" code">
+          <div class="">
             <div id="slide-8" class="content">
-              <div class="highlight js code highlight"><pre><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+              <pre>
+  @@@ js
+      // Some JavaScript
+      function() {
+        if (1 == 2) {
+          return "This is silly."
+        }
+      }
+  @@@
+</pre>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-9" class="content">
+              <h1>Becomes...</h1>
+            </div>
+          </div>
+        
+          <div class=" code">
+            <div id="slide-10" class="content">
+              <div class="highlight js code highlight"><pre><span class="c">// Some JavaScript</span>
+<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-
-<span class="k">return</span> <span class="s2">"This is silly."</span>
-
-
+    <span class="k">return</span> <span class="s2">"This is silly."</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

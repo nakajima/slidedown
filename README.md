@@ -74,6 +74,11 @@ Or for JavaScript
 * Generate PDFs (maybe via cucumber)
 * Stop making Nokogiri sad when parsing out snippets
 
+## Contributors
+
+* Pat Nakajima
+* Dan Croak
+
 (c) Copyright 2009 Pat Nakajima
 
 Permission is hereby granted, free of charge, to any person

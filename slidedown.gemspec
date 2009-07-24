@@ -5,6 +5,7 @@ version: !ruby/object:Gem::Version
 platform: ruby
 authors: 
 - Pat Nakajima
+- Dan Croak
 autorequire: 
 bindir: bin
 cert_chain: []
@@ -13,7 +14,7 @@ date: 2009-03-10 00:00:00 -04:00
 default_executable: slidedown
 dependencies: 
 - !ruby/object:Gem::Dependency 
-  name: rdiscount
+  name: makers-mark
   type: :runtime
   version_requirement: 
   version_requirements: !ruby/object:Gem::Requirement 
@@ -81,7 +82,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.4
+rubygems_version: 1.3.3
 signing_key: 
 specification_version: 2
 summary: Create slides with Markdown

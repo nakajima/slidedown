@@ -97,3 +97,16 @@
       text-decoration: underline;
     }
 @@@
+
+!SLIDE
+
+# An ERb test...
+
+!SLIDE
+
+@@@ html+erb
+    <h1>A test</h1>
+    <p>
+      <%= @foo.bar(:fizz => 'buzz') %>
+    </p>
+@@@

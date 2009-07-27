@@ -81,3 +81,19 @@
       }
     }
 @@@
+
+!SLIDE
+
+# A CSS test...
+
+!SLIDE
+
+@@@ css
+    #fizz {
+      color: #ffa;
+    }
+
+    .foo {
+      text-decoration: underline;
+    }
+@@@

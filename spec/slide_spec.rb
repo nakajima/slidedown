@@ -1,13 +1,13 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
 describe 'SlideDown' do
-  extend TestHelp
+  include TestHelp
 
   it 'has text' do
     with_markdown <<-MD
     |# foo
     MD
-    slide.text.should.include('# foo')
+    slide.text.should include('# foo')
   end
   
   it 'gets class names' do
@@ -21,7 +21,7 @@ describe 'SlideDown' do
     with_markdown <<-MD
     |# foo
     MD
-    Nokogiri(slide.html).at('h1').text.should.equal('foo')
+    Nokogiri(slide.html).at('h1').text.should == 'foo'
   end
   
   it 'syntax highlights' do
@@ -32,6 +32,6 @@ describe 'SlideDown' do
     |  end
     |@@@
     MD
-    Nokogiri(slide.html).at('.code.ruby').should.not.be.nil
+    Nokogiri(slide.html).at('.code.ruby').should_not be_nil
   end
 end

@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
 describe 'SlideDown' do
-  extend TestHelp
+  include TestHelp
 
   it 'finds slides' do
     with_markdown <<-MD
@@ -11,7 +11,7 @@ describe 'SlideDown' do
     |
     |# Second
     MD
-    slidedown.slides.length.should.equal(2)
+    slidedown.slides.length.should == 2
   end
 
   it 'generates HTML from markdown' do
@@ -20,7 +20,7 @@ describe 'SlideDown' do
     |# The title
     |!SLIDE
     MD
-    Nokogiri::HTML(slidedown.render('default')).at('h1').should.not.be.nil
+    Nokogiri::HTML(slidedown.render('default')).at('h1').should_not be_nil
   end
 
   it 'adds class names to slides' do
@@ -30,7 +30,7 @@ describe 'SlideDown' do
     |# The title
     MD
     second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1]
-    second_slide['class'].should.include('awesome')
+    second_slide['class'].should include('awesome')
   end
 
   # this one is hard
@@ -41,6 +41,6 @@ describe 'SlideDown' do
     |@@@
     MD
     # slidedown.render('default')
-    Nokogiri(slidedown.render('default')).at('.highlight.js').should.not.be.nil
+    Nokogiri(slidedown.render('default')).at('.highlight.js').should_not be_nil
   end
 end

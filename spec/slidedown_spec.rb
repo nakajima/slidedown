@@ -42,9 +42,11 @@ describe 'SlideDown' do
     |# Another Title
     |!NOTES
     |# More Notes
+    |!SLIDE
+    |# Yet Another Title
     MD
     
-    slidedown.slides.length.should == 2
+    slidedown.slides.length.should == 3
     
     first_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[0].content
     second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1].content

@@ -32,6 +32,24 @@ describe 'SlideDown' do
     second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1]
     second_slide['class'].should include('awesome')
   end
+  
+  it 'ignores content after !NOTES declaration' do
+    with_markdown <<-MD
+    |!SLIDE
+    |# The Title
+    |!NOTES
+    |# Some Notes
+    |!SLIDE
+    |# Another Title
+    |!NOTES
+    |# More Notes
+    MD
+    first_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[0].content
+    second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1].content
+    
+    first_slide.should_not include('Some Notes')
+    second_slide.should_not include('More Notes')
+  end
 
   # this one is hard
   it 'allows custom lexer' do

@@ -48,6 +48,7 @@ class SlideDown
   def initialize(raw)
     @raw = raw =~ /\A!SLIDE/ ? raw : "!SLIDE\n#{raw}"
     extract_classes!
+    extract_notes!
   end
 
   def slides
@@ -86,5 +87,14 @@ class SlideDown
       "!SLIDE"
     end
     @classes
+  end
+  
+  def extract_notes!
+    @raw.gsub!(/^!NOTES\s*(.*)!SLIDE$/m) do |note|
+      '!SLIDE'
+    end
+    @raw.gsub!(/^!NOTES\s*(.*\n)$/m) do |note|
+      ''
+    end
   end
 end

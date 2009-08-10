@@ -48,7 +48,6 @@ class SlideDown
   def initialize(raw)
     @raw = raw =~ /\A!SLIDE/ ? raw : "!SLIDE\n#{raw}"
     extract_classes!
-    extract_notes!
   end
 
   def slides

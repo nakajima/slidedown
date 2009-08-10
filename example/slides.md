@@ -10,6 +10,10 @@
 
 # Write slides in Markdown
 
+!NOTES
+
+# You can even include notes
+
 !SLIDE
 
     # Slide title

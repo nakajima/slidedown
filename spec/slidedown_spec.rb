@@ -35,7 +35,6 @@ describe 'SlideDown' do
   
   it 'ignores content after !NOTES declaration' do
     with_markdown <<-MD
-    |!SLIDE
     |# The Title
     |!NOTES
     |# Some Notes
@@ -44,6 +43,9 @@ describe 'SlideDown' do
     |!NOTES
     |# More Notes
     MD
+    
+    slidedown.slides.length.should == 2
+    
     first_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[0].content
     second_slide = Nokogiri::HTML(slidedown.render('default')).search('#track > div')[1].content
     

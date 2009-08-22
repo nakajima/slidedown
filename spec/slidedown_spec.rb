@@ -74,4 +74,14 @@ describe 'SlideDown' do
       Nokogiri(doggles.render('default')).at("link[rel='stylesheet'][href='#{stylesheet}']").should_not be_nil
     end
   end
+
+  it 'has a default title' do
+    with_markdown("# broccoli")
+    Nokogiri(slidedown.render('default')).at("title").text.should == "Slides"
+  end
+
+  it 'can be given a custom title' do
+    broccoli = SlideDown.new("# broccoli", :title => "Choppin")
+    Nokogiri(broccoli.render('default')).at("title").text.should == "Choppin"
+  end
 end

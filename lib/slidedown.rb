@@ -11,7 +11,7 @@ class SlideDown
   USAGE = "The SlideDown command line interface takes a .md (Markdown) file as its only required argument. It will convert the file to HTML in standard out. Options:
   -t, --template [TEMPLATE] the .erb files in /templates directory. Default is -t default, which prints stylesheets and javascripts inline. The import template uses link and script tags."
 
-  attr_accessor :stylesheets
+  attr_accessor :stylesheets, :title
   attr_reader :classes
 
   def self.run!(argv = ARGV)
@@ -49,7 +49,9 @@ class SlideDown
   def initialize(raw, opts = {})
     @raw = raw =~ /\A!SLIDE/ ? raw : "!SLIDE\n#{raw}"
     extract_classes!
+
     self.stylesheets = opts[:stylesheets] || local_stylesheets
+    self.title =       opts[:title]       || "Slides"
   end
 
   def slides

@@ -9,7 +9,7 @@ module TestHelp
   def slide(*args)
     Slide.new(@markdown, *args)
   end
-  
+
   def slidedown
     SlideDown.new(@markdown)
   end

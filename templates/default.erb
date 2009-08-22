@@ -5,9 +5,7 @@
       <%= read('stylesheets/slides.css') %>
     </style>
     <% stylesheets.each do |style| %>
-      <style type="text/css" media="screen">
-        <%= style %>
-      </style>
+      <link rel="stylesheet" href="<%= style %>" type="text/css" media="screen" charset="utf-8" />
     <% end %>
     <script type="text/javascript">
       <%= read('javascripts/jquery-1.3.2.js') %>

@@ -65,4 +65,13 @@ describe 'SlideDown' do
     # slidedown.render('default')
     Nokogiri(slidedown.render('default')).at('.highlight.js').should_not be_nil
   end
+
+  it 'links css files' do
+    stylesheets = ["reset.css", "my.css"]
+    doggles = SlideDown.new("# doggles", :stylesheets => stylesheets)
+
+    stylesheets.each do |stylesheet|
+      Nokogiri(doggles.render('default')).at("link[rel='stylesheet'][href='#{stylesheet}']").should_not be_nil
+    end
+  end
 end

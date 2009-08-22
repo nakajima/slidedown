@@ -1,3 +1,13 @@
+require 'rake'
+require 'spec/rake/spectask'
+
+Spec::Rake::SpecTask.new do |t|
+  t.spec_opts = ['--options', "spec/spec.opts"]
+end
+
+desc 'Default: run the specs.'
+task :default => :spec
+
 gem_spec = Gem::Specification.new do |s|
   s.name = %q{slidedown}
   s.version = "0.1.0"

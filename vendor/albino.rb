@@ -41,7 +41,7 @@
 # Chris Wanstrath // chris@ozmm.org 
 #         GitHub // http://github.com
 #
-require 'open4'
+require 'open3'
 
 class Albino
   @@bin = '/usr/local/bin/pygmentize'
@@ -60,7 +60,7 @@ class Albino
   end
 
   def execute(command)
-    pid, stdin, stdout, stderr = Open4.popen4(command)
+    stdin, stdout, stderr = Open3.popen3(command)
     stdin.puts @target
     stdin.close
     stdout.read.strip

@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <title>Slides</title>
+    <link href="/stylesheets/slides.css" media="screen" rel="stylesheet" charset="utf-8" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.easing.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hash-changed.js" type="text/javascript"></script>
+    <script src="/javascripts/slides.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="slides">
+      <div id="track">
+        
+          <div class="">
+            <div id="slide-0" class="content">
+              <h1>Introducing slidedown</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-1" class="content">
+              <h1>Why?</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-2" class="content">
+              <h1>Write slides in Markdown</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-3" class="content">
+              <pre><code># Slide title
+
+!SLIDE
+
+## A good point
+
+!SLIDE
+
+&gt; This is the coolest thing ever.
+</code></pre>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-4" class="content">
+              <h1>Syntax Highlighting</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-5" class="content">
+              <pre>
+  @@@ ruby
+      # A rack app
+      proc {
+        [200, { 'Location' =&gt; '/' },
+          "You are being redirected to /"
+        ]
+      }
+  @@@
+</pre>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-6" class="content">
+              <h1>Becomes...</h1>
+            </div>
+          </div>
+        
+          <div class=" code">
+            <div id="slide-7" class="content">
+              <div class="highlight ruby code highlight"><pre><span class="c1"># A rack app</span>
+<span class="nb">proc</span> <span class="p">{</span>
+  <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'Location'</span> <span class="o">=&gt;</span> <span class="s1">'/'</span> <span class="p">},</span>
+    <span class="s2">"You are being redirected to /"</span>
+  <span class="o">]</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-8" class="content">
+              <pre>
+  @@@ js
+      // Some JavaScript
+      function() {
+        if (1 == 2) {
+          return "This is silly."
+        }
+      }
+  @@@
+</pre>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-9" class="content">
+              <h1>Becomes...</h1>
+            </div>
+          </div>
+        
+          <div class=" code">
+            <div id="slide-10" class="content">
+              <div class="highlight js code highlight"><pre><span class="c">// Some JavaScript</span>
+<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">"This is silly."</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-11" class="content">
+              <h1>A CSS test...</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-12" class="content">
+              <div class="highlight css code highlight"><pre><span class="nf">#fizz</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="m">#ffa</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.foo</span> <span class="p">{</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-13" class="content">
+              <h1>An ERb test...</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-14" class="content">
+              <div class="highlight html+erb code highlight"><pre><span class="nt">&lt;h1&gt;</span>A test<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="vi">@foo</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="ss">:fizz</span> <span class="o">=&gt;</span> <span class="s1">'buzz'</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>

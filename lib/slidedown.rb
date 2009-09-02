@@ -9,7 +9,7 @@ $SILENT = true
 
 class SlideDown
   USAGE = "The SlideDown command line interface takes a .md (Markdown) file as its only required argument. It will convert the file to HTML in standard out. Options:
-  -t, --template [TEMPLATE] the .erb files in /templates directory. Default is -t default, which prints stylesheets and javascripts inline. The import template uses link and script tags."
+  -t, --template [TEMPLATE] the .erb files in /templates directory. Default is -t default, which prints stylesheets and javascripts inline. The import template uses link and script tags. This can also accept an absolute path for templates outside the /templates directory."
 
   attr_accessor :stylesheets, :title
   attr_reader :classes
@@ -63,9 +63,13 @@ class SlideDown
   end
 
   def render(name)
-    directory = File.join(File.dirname(__FILE__), "..", "templates")
-    path      = File.join(directory, "#{name}.erb")
-    template  = File.read(path)
+    if is_absolute_path?(name)
+      template = File.read("#{name}.erb")
+    else
+      directory = File.join(File.dirname(__FILE__), "..", "templates")
+      path      = File.join(directory, "#{name}.erb")
+      template  = File.read(path)
+    end
     ERB.new(template).result(binding)
   end
 
@@ -99,5 +103,9 @@ class SlideDown
     @raw.gsub!(/^!NOTES\s*(.*\n)$/m) do |note|
       ''
     end
+  end
+
+  def is_absolute_path?(path)
+    path == File.expand_path(path)
   end
 end

@@ -20,6 +20,16 @@ describe 'slidedown commandline tool' do
     result_file_content.should == reference_file_content
   end
 
+  it "accepts -t /full/path/to/template-filename" do
+    import_template_path = File.join(root_path, 'templates', 'import.erb')
+    other_template_path  = Tempfile.new("slidedown-template").path
+    File.copy(import_template_path, "#{other_template_path}.erb")
+
+    run_slidedown("-t #{other_template_path}")
+
+    result_file_content.should == reference_file_content("slides-import")
+  end
+
   def run_slidedown(opts = "")
     `#{slidedown_path} #{source_path} #{opts} > #{result_file_path}`
   end

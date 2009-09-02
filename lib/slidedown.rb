@@ -79,7 +79,7 @@ class SlideDown
     Dir[Dir.pwd + '/*.stylesheets']
   end
 
-  def jabascripts
+  def javascripts
     Dir[Dir.pwd + '/*.javascripts'].map { |path| File.read(path) }
   end
 

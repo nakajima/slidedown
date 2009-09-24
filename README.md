@@ -4,8 +4,7 @@ Generate slides with Markdown
 
 ## Usage
 
-Write your talk. Currently, the syntax highlight lexer defaults to Ruby.
-Adding support for specifying languages is in the TODOs.
+Write your talk.
 
     !SLIDE
     
@@ -35,7 +34,7 @@ Generate the output:
 
 ### Custom Styles
 
-To add custom styles to your slides, just create stylesheets in the same directory as your presentation's markdown file:
+To add custom styles to your slides, just create stylesheets in the same directory as your presentation markdown file:
 
     | - presentation-directory
       | - slides.md
@@ -43,28 +42,41 @@ To add custom styles to your slides, just create stylesheets in the same directo
 
 The additional styles will be added to your generated slides.
 
+## Navigation
+
+Give your presentation!
+
+* left, right arrows to navigate through slides
+* esc to go home
+
 ## Syntax Highlighting
 
-slidedown syntax highlighting works just like Lighthouse's:
+For Ruby:
 
     @@@ ruby
-    def foo
-      :bar
-    end
+        def foo
+          :bar
+        end
     @@@
 
-Or for JavaScript
+For Javascript
 
     @@@ js
-      function foo() {
-        return 'bar';
-      }
+        function foo() {
+          return 'bar';
+        }
+    @@@
+
+For ERb:
+
+    @@@ rhtml
+        <%= @post.created_at.to_s(:fancy) %>
     @@@
 
 ### Requirements
 
-* RDiscount
 * Nokogiri
+* makers-mark
 * pygments (for syntax highlighting)
 
 ## Todo

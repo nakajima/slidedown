@@ -8,6 +8,7 @@ body {
   font-size: 38px;
   color: #111;
   background: #fff;
+  overflow: hidden;
 }
 
 pre {
@@ -24,6 +25,17 @@ blockquote {
 
 ul {
   padding: 0 0 0 1em;
+}
+
+#instructions {
+  position: absolute;
+  width: 99%;
+  text-align: center;
+  background: #ffd;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ff0;
 }
 
 #slides {

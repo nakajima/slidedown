@@ -4,43 +4,43 @@
   var allSlides = function() {
     return $('#slides #track > div');
   }
-  
+
   var slideDimensions = function() {
     return {
       width: $(window).width(),
       height: $(window).height()
     }
   }
-  
+
   var getIndex = function() {
     var index = document.location.hash.split('#')[1];
     return Number(index);
   }
-  
+
   var setIndex = function(idx) {
     var newSlide = '#slide-' + idx;
     if ($(newSlide).size() < 1) { return false; }
     document.location.hash = '#' + idx;
   }
-  
+
   var setSlideDimensions = function() {
     var dimensions = slideDimensions();
-    
+
     $('#slides').height(dimensions.height);
     $('#slides').width(dimensions.width);
-    
+
     allSlides().height(dimensions.height);
     allSlides().width(dimensions.width);
   }
-  
+
   var showCurrentSlide = function() {
     var dimensions = slideDimensions();
     var index = getIndex();
     var offset = (index || 0) * dimensions.width;
-    
+
     $('#track').animate({ marginLeft: '-' + offset + 'px' }, 200);
   }
-  
+
   var verticalAlign = function() {
     var dimensions = slideDimensions();
     var margin = (dimensions.height - $(this).height()) / 2;
@@ -54,19 +54,19 @@
       overflow: 'hidden',
       fontSize: '26px'
     });
-    
+
     allSlides().find('.content').each(verticalAlign);
   }
-  
+
   var adjustSlides = function() {
     var dimensions = slideDimensions();
-    
+
     setSlideDimensions();
     showCurrentSlide();
 
     formatGist();
   }
-  
+
   var move = function(event) {
     var DIRECTIONS = {
       37: -1, // ARROW LEFT
@@ -76,12 +76,13 @@
       left: -1,
       right: 1
     }
-    
+
     if (dir = DIRECTIONS[event.which || event]) {
+      $('#instructions').slideUp(100);
       setIndex(getIndex() + dir);
     }
   }
-  
+
   function clickMove(e) {
     if (e.pageX < ($(window).width() / 2)) {
       move('left');
@@ -89,7 +90,11 @@
       move('right');
     }
   }
-  
+
+  function hideInstructions() {
+    $('#instructions').slideUp(200);
+  }
+
   $(window).bind('resize', function() { adjustSlides(); });
   $(document).bind('keydown', move);
   $(document).bind('hash.changed', adjustSlides);
@@ -100,5 +105,7 @@
     if (document.location.search.indexOf('notes') == 1) {
       $('.notes').show();
     }
+
+    window.setTimeout(hideInstructions, 3000);
   });
 })(jQuery);

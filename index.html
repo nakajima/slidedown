@@ -12,6 +12,7 @@ body {
   font-size: 38px;
   color: #111;
   background: #fff;
+  overflow: hidden;
 }
 
 pre {
@@ -28,6 +29,17 @@ blockquote {
 
 ul {
   padding: 0 0 0 1em;
+}
+
+#instructions {
+  position: absolute;
+  width: 99%;
+  text-align: center;
+  background: #ffd;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ff0;
 }
 
 #slides {
@@ -117,6 +129,7 @@ ul {
 .code .vg { color: #008080 } /* Name.Variable.Global */
 .code .vi { color: #008080 } /* Name.Variable.Instance */
 .code .il { color: #009999 } /* Literal.Number.Integer.Long */
+
     </style>
     
     <script type="text/javascript">
@@ -4509,7 +4522,7 @@ jQuery.each([ "Height", "Width" ], function(i, name){
  * 
  * Open source under the BSD License. 
  * 
- * Copyright √Ç¬© 2008 George McGinley Smith
+ * Copyright Â© 2008 George McGinley Smith
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, 
@@ -4678,7 +4691,7 @@ jQuery.extend( jQuery.easing,
  * 
  * Open source under the BSD License. 
  * 
- * Copyright √Ç¬© 2001 Robert Penner
+ * Copyright Â© 2001 Robert Penner
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification, 
@@ -4729,43 +4742,43 @@ jQuery.extend( jQuery.easing,
   var allSlides = function() {
     return $('#slides #track > div');
   }
-  
+
   var slideDimensions = function() {
     return {
       width: $(window).width(),
       height: $(window).height()
     }
   }
-  
+
   var getIndex = function() {
     var index = document.location.hash.split('#')[1];
     return Number(index);
   }
-  
+
   var setIndex = function(idx) {
     var newSlide = '#slide-' + idx;
     if ($(newSlide).size() < 1) { return false; }
     document.location.hash = '#' + idx;
   }
-  
+
   var setSlideDimensions = function() {
     var dimensions = slideDimensions();
-    
+
     $('#slides').height(dimensions.height);
     $('#slides').width(dimensions.width);
-    
+
     allSlides().height(dimensions.height);
     allSlides().width(dimensions.width);
   }
-  
+
   var showCurrentSlide = function() {
     var dimensions = slideDimensions();
     var index = getIndex();
     var offset = (index || 0) * dimensions.width;
-    
+
     $('#track').animate({ marginLeft: '-' + offset + 'px' }, 200);
   }
-  
+
   var verticalAlign = function() {
     var dimensions = slideDimensions();
     var margin = (dimensions.height - $(this).height()) / 2;
@@ -4779,34 +4792,42 @@ jQuery.extend( jQuery.easing,
       overflow: 'hidden',
       fontSize: '26px'
     });
-    
+
     allSlides().find('.content').each(verticalAlign);
   }
-  
+
   var adjustSlides = function() {
     var dimensions = slideDimensions();
-    
+
     setSlideDimensions();
     showCurrentSlide();
 
     formatGist();
   }
-  
+
   var move = function(event) {
     var DIRECTIONS = {
-      37: -1, // ARROW LEFT
-      39: 1,  // ARROW RIGHT
-      32: 1,  // SPACE BAR
-      13: 1,   // RETURN
+      37: -1,     // ARROW LEFT
+      39: 1,      // ARROW RIGHT
+      32: 1,      // SPACE BAR
+      13: 1,      // RETURN
+      27: 'home', // ESCAPE
       left: -1,
       right: 1
     }
-    
+
     if (dir = DIRECTIONS[event.which || event]) {
-      setIndex(getIndex() + dir);
+      if (dir == 'home') {
+        event.preventDefault();
+        event.stopPropagation();
+        location.href = '/';
+      } else {
+        $('#instructions').slideUp(100);
+        setIndex(getIndex() + dir);
+      }
     }
   }
-  
+
   function clickMove(e) {
     if (e.pageX < ($(window).width() / 2)) {
       move('left');
@@ -4814,7 +4835,11 @@ jQuery.extend( jQuery.easing,
       move('right');
     }
   }
-  
+
+  function hideInstructions() {
+    $('#instructions').slideUp(200);
+  }
+
   $(window).bind('resize', function() { adjustSlides(); });
   $(document).bind('keydown', move);
   $(document).bind('hash.changed', adjustSlides);
@@ -4825,12 +4850,18 @@ jQuery.extend( jQuery.easing,
     if (document.location.search.indexOf('notes') == 1) {
       $('.notes').show();
     }
+
+    window.setTimeout(hideInstructions, 3000);
   });
 })(jQuery);
+
     </script>
     
   </head>
   <body>
+    <div id="instructions">
+      Use the left/right arrow keys to navigate.
+    </div>
     <div id="slides">
       <div id="track">
         
@@ -4954,6 +4985,22 @@ jQuery.extend( jQuery.easing,
 <span class="nc">.foo</span> <span class="p">{</span>
   <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-13" class="content">
+              <h1>An ERb test...</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-14" class="content">
+              <div class="highlight html+erb code highlight"><pre><span class="nt">&lt;h1&gt;</span>A test<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="vi">@foo</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="ss">:fizz</span> <span class="o">=&gt;</span> <span class="s1">'buzz'</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
 </pre></div>
             </div>
           </div>

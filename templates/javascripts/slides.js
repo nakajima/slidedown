@@ -69,17 +69,24 @@
 
   var move = function(event) {
     var DIRECTIONS = {
-      37: -1, // ARROW LEFT
-      39: 1,  // ARROW RIGHT
-      32: 1,  // SPACE BAR
-      13: 1,   // RETURN
+      37: -1,     // ARROW LEFT
+      39: 1,      // ARROW RIGHT
+      32: 1,      // SPACE BAR
+      13: 1,      // RETURN
+      27: 'home', // ESCAPE
       left: -1,
       right: 1
     }
 
     if (dir = DIRECTIONS[event.which || event]) {
-      $('#instructions').slideUp(100);
-      setIndex(getIndex() + dir);
+      if (dir == 'home') {
+        event.preventDefault();
+        event.stopPropagation();
+        location.href = '/';
+      } else {
+        $('#instructions').slideUp(100);
+        setIndex(getIndex() + dir);
+      }
     }
   }
 

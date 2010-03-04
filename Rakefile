@@ -45,5 +45,3 @@ task :gemspec do
     f.write gem_spec.to_yaml
   end
 end
-
-

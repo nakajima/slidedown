@@ -1,90 +1,36 @@
---- !ruby/object:Gem::Specification 
-name: slidedown
-version: !ruby/object:Gem::Version 
-  version: 0.1.2
-platform: ruby
-authors: 
-- Pat Nakajima
-- Dan Croak
-autorequire: 
-bindir: bin
-cert_chain: []
+# -*- encoding: utf-8 -*-
 
-date: 2009-03-10 00:00:00 -04:00
-default_executable: slidedown
-dependencies: 
-- !ruby/object:Gem::Dependency 
-  name: makers-mark
-  type: :runtime
-  version_requirement: 
-  version_requirements: !ruby/object:Gem::Requirement 
-    requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        version: "0"
-    version: 
-- !ruby/object:Gem::Dependency 
-  name: nokogiri
-  type: :runtime
-  version_requirement: 
-  version_requirements: !ruby/object:Gem::Requirement 
-    requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        version: "0"
-    version: 
-description: 
-email: 
-executables: 
-- slidedown
-extensions: []
+Gem::Specification.new do |s|
+  s.name = %q{slidedown}
+  s.version = "0.2.0"
 
-extra_rdoc_files: []
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.authors = ["Pat Nakajima", "Dan Croak"]
+  s.date = %q{2009-09-24}
+  s.default_executable = %q{slidedown}
+  s.executables = ["slidedown"]
+  s.extra_rdoc_files = ["README.md"]
+  s.files = ["README.md", "bin/slidedown", "lib/slide.rb", "lib/slidedown.rb", "templates/default.erb", "templates/import.erb", "templates/javascripts/jquery-1.3.2.js", "templates/javascripts/jquery.easing.js", "templates/javascripts/jquery.hash-changed.js", "templates/javascripts/slides.js", "templates/stylesheets/screen.css", "templates/stylesheets/slides.css", "vendor/albino.rb", "spec/commandline_spec.rb", "spec/helper.rb", "spec/slide_spec.rb", "spec/slidedown_spec.rb"]
+  s.homepage = %q{http://github.com/nakajima/slidedown}
+  s.rdoc_options = ["--charset=UTF-8"]
+  s.require_paths = ["lib", "vendor"]
+  s.rubygems_version = %q{1.3.6}
+  s.summary = %q{Create slides with Markdown}
+  s.test_files = ["spec/commandline_spec.rb", "spec/helper.rb", "spec/slide_spec.rb", "spec/slidedown_spec.rb"]
 
-files: 
-- README.md
-- bin/slidedown
-- lib/slide.rb
-- lib/slidedown.rb
-- templates/default.erb
-- templates/import.erb
-- templates/javascripts
-- templates/javascripts/jquery-1.3.2.js
-- templates/javascripts/jquery.easing.js
-- templates/javascripts/jquery.hash-changed.js
-- templates/javascripts/slides.js
-- templates/stylesheets
-- templates/stylesheets/screen.css
-- templates/stylesheets/slides.css
-- vendor/albino.rb
-has_rdoc: true
-homepage: 
-licenses: []
+  if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
+    s.specification_version = 2
 
-post_install_message: 
-rdoc_options: []
-
-require_paths: 
-- lib
-- vendor
-required_ruby_version: !ruby/object:Gem::Requirement 
-  requirements: 
-  - - ">="
-    - !ruby/object:Gem::Version 
-      version: "0"
-  version: 
-required_rubygems_version: !ruby/object:Gem::Requirement 
-  requirements: 
-  - - ">="
-    - !ruby/object:Gem::Version 
-      version: "0"
-  version: 
-requirements: []
-
-rubyforge_project: 
-rubygems_version: 1.3.3
-signing_key: 
-specification_version: 2
-summary: Create slides with Markdown
-test_files: []
-
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<makers-mark>, [">= 0"])
+      s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
+    else
+      s.add_dependency(%q<makers-mark>, [">= 0"])
+      s.add_dependency(%q<nokogiri>, [">= 0"])
+    end
+  else
+    s.add_dependency(%q<makers-mark>, [">= 0"])
+    s.add_dependency(%q<nokogiri>, [">= 0"])
+  end
+end

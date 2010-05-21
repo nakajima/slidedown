@@ -1,6 +1,8 @@
 # slidedown
 
-Generate slides with Markdown
+Generate HTML slides with Markdown.
+
+*Spoiler Alert: It doesn't work so well with Internet Explorer. Other browsers should be fine.*
 
 ## Usage
 

@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: Helvetica;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 38px;
   color: #111;
   background: #fff;
@@ -12,7 +12,7 @@ body {
 }
 
 pre {
-  font-family: Bitstream Vera Sans Mono;
+  font-family: Bitstream Vera Sans Mono, monospace;
   font-size: 1em;
 }
 

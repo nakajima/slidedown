@@ -73,21 +73,57 @@
       39: 1,      // ARROW RIGHT
       32: 1,      // SPACE BAR
       13: 1,      // RETURN
-      27: 'home', // ESCAPE
+      27: 'home', // ESCAPE,
+      home: 'home',
       left: -1,
       right: 1
     }
 
     if (dir = DIRECTIONS[event.which || event]) {
       if (dir == 'home') {
-        event.preventDefault();
-        event.stopPropagation();
+        if (event.preventDefault && event.stopPropagation) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
         location.href = '/';
       } else {
         $('#instructions').slideUp(100);
         setIndex(getIndex() + dir);
       }
     }
+  }
+
+  if ('ontouchstart' in document) {
+    var touchEnd   = null;
+    var touchStart = null;
+
+    $(document)
+      .bind('touchstart', function(event) {
+        var touch = event.originalEvent.targetTouches[0];
+
+        touchStart = {
+          x : touch.pageX,
+          y : touch.pageY
+        };
+      })
+      .bind('touchmove', function(event) {
+        var touch = event.originalEvent.targetTouches[0];
+
+        touchEnd = {
+          x : touch.pageX,
+          y : touch.pageY
+        };
+
+        event.preventDefault();
+      })
+      .bind('touchend', function(event) {
+        if (Math.abs(touchEnd.y - touchStart.y) >= ($(window).height() / 2)) {
+          move('home');
+        } else {
+          move((touchEnd.x - touchStart.x) > 0 ? 'left' : 'right');
+        }
+      });
   }
 
   function clickMove(e) {

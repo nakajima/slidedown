@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: Helvetica;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 38px;
   color: #111;
   background: #fff;
@@ -16,7 +16,7 @@ body {
 }
 
 pre {
-  font-family: Bitstream Vera Sans Mono;
+  font-family: Bitstream Vera Sans Mono, monospace;
   font-size: 1em;
 }
 
@@ -4811,21 +4811,57 @@ jQuery.extend( jQuery.easing,
       39: 1,      // ARROW RIGHT
       32: 1,      // SPACE BAR
       13: 1,      // RETURN
-      27: 'home', // ESCAPE
+      27: 'home', // ESCAPE,
+      home: 'home',
       left: -1,
       right: 1
     }
 
     if (dir = DIRECTIONS[event.which || event]) {
       if (dir == 'home') {
-        event.preventDefault();
-        event.stopPropagation();
+        if (event.preventDefault && event.stopPropagation) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
         location.href = '/';
       } else {
         $('#instructions').slideUp(100);
         setIndex(getIndex() + dir);
       }
     }
+  }
+
+  if ('ontouchstart' in document) {
+    var touchEnd   = null;
+    var touchStart = null;
+
+    $(document)
+      .bind('touchstart', function(event) {
+        var touch = event.originalEvent.targetTouches[0];
+
+        touchStart = {
+          x : touch.pageX,
+          y : touch.pageY
+        };
+      })
+      .bind('touchmove', function(event) {
+        var touch = event.originalEvent.targetTouches[0];
+
+        touchEnd = {
+          x : touch.pageX,
+          y : touch.pageY
+        };
+
+        event.preventDefault();
+      })
+      .bind('touchend', function(event) {
+        if (Math.abs(touchEnd.y - touchStart.y) >= ($(window).height() / 2)) {
+          move('home');
+        } else {
+          move((touchEnd.x - touchStart.x) > 0 ? 'left' : 'right');
+        }
+      });
   }
 
   function clickMove(e) {
@@ -4960,7 +4996,7 @@ jQuery.extend( jQuery.easing,
         
           <div class=" code">
             <div id="slide-10" class="content">
-              <div class="highlight js code highlight"><pre><span class="c">// Some JavaScript</span>
+              <div class="highlight js code highlight"><pre><span class="c1">// Some JavaScript</span>
 <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s2">"This is silly."</span>

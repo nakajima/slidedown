@@ -73,6 +73,8 @@
       39: 1,      // ARROW RIGHT
       32: 1,      // SPACE BAR
       13: 1,      // RETURN
+      33: -1,     // Kensington Back
+      34: 1,      // Kensington Forward
       27: 'home', // ESCAPE,
       home: 'home',
       left: -1,

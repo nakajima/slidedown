@@ -88,7 +88,7 @@
           event.stopPropagation();
         }
 
-        location.href = '/';
+        setIndex(0);
       } else {
         $('#instructions').slideUp(100);
         setIndex(getIndex() + dir);

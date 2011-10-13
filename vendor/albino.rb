@@ -44,7 +44,7 @@
 require 'open3'
 
 class Albino
-  @@bin = '/usr/local/bin/pygmentize'
+  @@bin = `which pygmentize`.chomp
 
   def self.bin=(path)
     @@bin = path
